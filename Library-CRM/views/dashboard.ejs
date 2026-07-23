@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Dashboard | Library CRM</title>
+ <link rel="stylesheet" href="/css/dashboard.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/.6.0/css/all.min.css">
+</head>
+<body>
+<div class="dashboard">
+           <!-- Sidebar -->
+ <div class="sidebar">
+  <h2>Library CRM</h2>
+  <ul>
+   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
+   <li><a href="/add-member"><i class="fa fa-user-plus"></i> Add Member</a></li>
+   <li><a href="/members"><i class="fa fa-users"></i> Members</a></li>
+   <li><a href="/books"><i class="fa fa-book"></i> Books</a></li>
+   <li><a href="#"><i class="fa fa-right-from-bracket"></i> Logout</a></li>
+  </ul>
+</div>
+          <!-- Main -->
+<div class="main">
+  <div class="topbar">
+   <h1>Dashboard</h1>
+  </div>
+  <div class="cards">
+    <div class="card">
+     <i class="fa fa-users"></i>
+     <h2>150</h2>
+     <p>Total Members</p>
+    </div>
+    <div class="card">
+     <i class="fa fa-user-check"></i>
+     <h2>120</h2>
+     <p>Active Members</p>
+    </div>
+    <div class="card">
+     <i class="fa fa-user-clock"></i>
+     <h2>20</h2>
+     <p>Pending</p>
+    </div>
+    <div class="card">
+     <i class="fa fa-book"></i>
+     <h2>500</h2>
+     <p>Total Books</p>
+    </div>
+  </div>
+  <div class="table-box">
+   <h2>Recent Members</h2>
+   <table>
+     <tbody>
+<% members.forEach(member => { %>
+<tr>
+    <td><%= member.name %></td>
+    <td><%= member.email %></td>
+    <td><%= member.phone %></td>
+    <td><%= member.status %></td>
+</tr>
+<% }) %>
+</tbody>
+  </table>
+  </div>
+ </div>
+</div>
+<script src="/js/script.js"></script>
+</body>
+</html>
