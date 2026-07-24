@@ -32,7 +32,27 @@ app.get("/dashboard", (req, res) => {
         }
     );
 });
+// Login
+app.post("/login", (req, res) => {
+    const { email, password } = req.body;
 
+    db.query(
+        "SELECT * FROM admin WHERE email = ? AND password = ?",
+        [email, password],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+                return res.send("Database Error");
+            }
+
+            if (results.length > 0) {
+                res.redirect("/dashboard");
+            } else {
+                res.send("Invalid Email or Password");
+            }
+        }
+    );
+});
 // Add Member Page
 app.get("/add-member", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "add-member.html"));
