@@ -138,6 +138,10 @@ CREATE TABLE IF NOT EXISTS members (
         console.log("Members table ready");
     }
 });
+// Logout
+app.get("/logout", (req, res) => {
+    res.redirect("/");
+});
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
