@@ -101,12 +101,43 @@ app.post("/add-member", (req, res) => {
         }
     );
 });
-/*app.post("/add-member", (req, res) => {
-    console.log(req.body);
+// Create admin table
+db.query(`
+CREATE TABLE IF NOT EXISTS admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL
+)`, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Admin table ready");
 
-    // फिलहाल Members page पर भेज दो
-    res.redirect("/members");
-});*/
+        db.query(
+            "INSERT IGNORE INTO admin (id, email, password) VALUES (1, 'admin@gmail.com', '123456')"
+        );
+    }
+});
+
+// Create members table
+db.query(`
+CREATE TABLE IF NOT EXISTS members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    address TEXT,
+    membership VARCHAR(50),
+    joining_date DATE,
+    status VARCHAR(50),
+    notes TEXT
+)`, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("Members table ready");
+    }
+});
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
